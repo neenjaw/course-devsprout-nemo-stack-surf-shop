@@ -1,0 +1,29 @@
+{
+  "name": "nemo-surf-shop",
+  "version": "1.0.0",
+  "description": "NEMO stack surf shop",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neenjaw/nemo-stack-surf-shop.git"
+  },
+  "keywords": [
+    "NEMO stack",
+    "node",
+    "mongo",
+    "express"
+  ],
+  "author": "Tim Austin",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.4",
+    "passport": "^0.4.0"
+  }
+}
