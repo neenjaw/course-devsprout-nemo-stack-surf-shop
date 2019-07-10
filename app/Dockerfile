@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --quiet
+RUN npm install
+
+RUN npm install -g nodemon
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 8080
 
-RUN npm install -g nodemon --quiet
-
-CMD [ "nodemon", "server.js" ]
+CMD [ "nodemon", "app/server.js" ]
