@@ -1,7 +1,9 @@
 const termColor = {};
 
 termColor.COLOR = {};
+
 termColor.COLOR.RESET   = '\x1B[0m';
+
 termColor.COLOR.BLACK   = '\x1B[30m';
 termColor.COLOR.RED     = '\x1B[31m';
 termColor.COLOR.GREEN   = '\x1B[32m';
