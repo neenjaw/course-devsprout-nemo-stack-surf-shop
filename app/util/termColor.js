@@ -31,5 +31,4 @@ termColor.paint = (string, color) => {
     return paintColor + string + termColor.COLOR.RESET;
 };
 
-
 module.exports = termColor;
