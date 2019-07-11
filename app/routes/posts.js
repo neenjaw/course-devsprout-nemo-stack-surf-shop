@@ -12,7 +12,7 @@ router.get('/new', (req, res, next) => {
 });
 
 /* POST new post form - /posts */
-router.get('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
   res.redirect('/posts');
 });
 
@@ -27,12 +27,12 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 /* PUT update post form - /posts/:id */
-router.get('/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   res.redirect('/posts');
 });
 
 /* DELETE destroy post form - /posts/:id */
-router.get('/:id', (req, res, next) => {
+router.delete('/:id', (req, res, next) => {
   res.redirect('/posts');
 });
 
