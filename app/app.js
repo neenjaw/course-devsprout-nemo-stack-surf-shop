@@ -1,8 +1,3 @@
-const termColor = require('./util/termColor');
-const checklist = require('./util/checklist');
-
-console.log(checklist.print('OK', 'NEMO Surf Shop Loading!'));
- 
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const express = require('express');

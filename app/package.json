@@ -5,6 +5,7 @@
   "description": "NEMO stack surf shop",
   "scripts": {
     "start": "node ./bin/www",
+    "debug": "DEBUG=express,nemo-surf-shop:* nodemon bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
   "author": "Tim Austin",
   "license": "MIT",
   "devDependencies": {
+    "locus": "^2.0.1",
     "nodemon": "^1.19.1"
   },
   "dependencies": {

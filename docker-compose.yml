@@ -5,6 +5,8 @@ services:
   app:
     container_name: surf-shop-app
     hostname: app
+    environment:
+      - 'DEBUG=express,nemo-surf-shop:*'
     build: ./app
     ports:
       - '80:3000'
