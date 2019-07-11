@@ -21,6 +21,7 @@
   "author": "Tim Austin",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "locus": "^2.0.1",
     "nodemon": "^1.19.1"
   },

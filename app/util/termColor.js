@@ -24,13 +24,13 @@ termColor.COLOR.BRIGHT_WHITE   = '\x1B[37;1m';
 
 
 termColor.getColorCode = (color) => {
-    return termColor.COLOR[color.toUpperCase()] || termColor.COLOR.RESET;
+  return termColor.COLOR[color.toUpperCase()] || termColor.COLOR.RESET;
 };
 
 termColor.paint = (string, color) => {
-    const paintColor = termColor.getColorCode(color);
+  const paintColor = termColor.getColorCode(color);
     
-    return paintColor + string + termColor.COLOR.RESET;
+  return paintColor + string + termColor.COLOR.RESET;
 };
 
 module.exports = termColor;
