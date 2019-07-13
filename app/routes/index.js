@@ -52,14 +52,14 @@ router.put('/forgot', (req, res, next) => {
   });
 });
 
-/* GET /reset */
+/* GET /reset/:token */
 router.get('/reset/:token', (req, res, next) => {
   res.render('reset', { 
     title: 'NEMO Surf Shop ‒ Reset Password' 
   });
 });
 
-/* POST /reset */
+/* POST /reset/:token */
 router.put('/reset/:token', (req, res, next) => {
   res.render('reset_notification', { 
     title: 'NEMO Surf Shop ‒ Reset Password' 
