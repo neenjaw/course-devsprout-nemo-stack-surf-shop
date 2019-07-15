@@ -4,22 +4,24 @@ const ReviewSchema = new mongoose.Schema({
   // author
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   // title
   title: String,
   // body
-  body: String,
-  // reviews
-  review: {
+  body: {
+    type: String,
+    required: true
+  },
+  // post
+  post: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Review'
+    ref: 'Post'
   },
 });
 
-const Review = mongoose.model('review', ReviewSchema);
-
 module.exports = {
   ReviewSchema: ReviewSchema,
-  Review: Review
+  Review: mongoose.model('review', ReviewSchema)
 };

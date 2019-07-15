@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new mongoose.Schema({
-  // email
-  email: String,
-  // username
-  username: String,
-  // password
-  password: String,
-  // posts
+  email: {
+    type: String,
+    validate: {
+      validator: function(v) {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
+      },
+      message: props => `${props.value} is not a valid email.`
+    },
+    required: [true, 'User email required!']
+  },
+  image: String,
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post'
@@ -19,9 +24,9 @@ const UserSchema = new mongoose.Schema({
   }]
 });
 
-const User = mongoose.model('user', UserSchema);
+UserSchema.plugin(passportLocalMongoose);
 
 module.exports = {
   UserSchema: UserSchema,
-  User: User
+  User: mongoose.model('user', UserSchema)
 };

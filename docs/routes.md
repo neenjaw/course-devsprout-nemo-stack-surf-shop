@@ -2,10 +2,19 @@
 
 ## Index
 
-METHOD | RESTful action | path
--------+----------------+----------------
-GET    | index          | /
-
+METHOD | RESTful action      | path
+-------+---------------------+----------------
+GET    | index               | /
+GET    | register            | /register
+POST   | register create     | /register
+GET    | login               | /login
+POST   | login create        | /login
+GET    | logout              | /logout
+GET    | redirect to profile | /profile
+GET    | forgot              | /forgot
+PUT    | forgot logic        | /forgot
+GET    | reset               | /reset/:token
+PUT    | reset logic         | /reset/:token
 
 ## Posts
 

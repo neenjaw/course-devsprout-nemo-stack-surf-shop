@@ -2,19 +2,27 @@ const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
   // title
-  title: String,
+  title: {
+    type: String,
+    required: true
+  },
   // price -- in cents
   price: {
     type: Number,
     get: cents => (cents/100).toFixed(2),
-    set: dollars => dollars * 100
+    set: dollars => dollars * 100,
+    required: true
   },
   // description
-  description: String,
+  description: {
+    type: String,
+    required: true
+  },
   // author
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   // reviews
   reviews: [{
@@ -22,20 +30,18 @@ const PostSchema = new mongoose.Schema({
     ref: 'Review'
   }],
   // images
-  // images: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Image'
-  // }],
+  images: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Image'
+  }],
   // location
-  // location: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Location'
-  // }
+  location: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Location'
+  }
 });
-
-const Post = mongoose.model('post', PostSchema);
 
 module.exports = {
   PostSchema: PostSchema,
-  Post: Post
+  Post: mongoose.model('post', PostSchema)
 };
