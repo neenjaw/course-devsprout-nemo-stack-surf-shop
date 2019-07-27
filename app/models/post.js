@@ -37,7 +37,7 @@ const PostSchema = new mongoose.Schema({
   // location
   location: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Location'
+    ref: 'Point'
   }
 });
 
