@@ -1,9 +1,14 @@
 var express = require('express');
 var router = express.Router({ mergeParams: true });
+const csrf = require('csurf');
+const csrfProtection = csrf();
 
 /* GET reviews index - /posts/:id/reviews */
-router.get('/', (req, res, next) => {
-  res.render('reviews/index', { title: 'NEMO Surf Shop ‒ Listing Reviews' });
+router.get('/', csrfProtection, (req, res, next) => {
+  res.render('reviews/index', { 
+    csrfToken: req.csrfToken(),
+    title: 'NEMO Surf Shop ‒ Listing Reviews' 
+  });
 });
 
 /* GET new post form - /posts/:id/reviews/new */
@@ -12,7 +17,7 @@ router.get('/', (req, res, next) => {
 // });
 
 /* POST new post form - /posts/:id/reviews */
-router.post('/', (req, res, next) => {
+router.post('/', csrfProtection, (req, res, next) => {
   res.redirect('/reviews');
 });
 
@@ -22,17 +27,20 @@ router.post('/', (req, res, next) => {
 // });
 
 /* GET edit post form - /posts/:id/reviews/:review_id/edit */
-router.get('/:review_id/edit', (req, res, next) => {
-  res.render('reviews/edit', { title: 'NEMO Surf Shop ‒ Edit Listing Review' });
+router.get('/:review_id/edit', csrfProtection, (req, res, next) => {
+  res.render('reviews/edit', { 
+    csrfToken: req.csrfToken(),
+    title: 'NEMO Surf Shop ‒ Edit Listing Review' 
+  });
 });
 
 /* PUT update post form - /posts/:id/reviews/:review_id */
-router.put('/:review_id', (req, res, next) => {
+router.put('/:review_id', csrfProtection, (req, res, next) => {
   res.redirect('/reviews');
 });
 
 /* DELETE destroy post form - /posts/:id/reviews/:review_id */
-router.delete('/:review_id', (req, res, next) => {
+router.delete('/:review_id', csrfProtection, (req, res, next) => {
   res.redirect('/reviews');
 });
 

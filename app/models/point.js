@@ -13,8 +13,10 @@ const PointSchema = new mongoose.Schema({
       validator: function(point) {
         const [longitude, latitude] = point;
 
-        return longitude && (-180 <= longitude) && (longitude <= 180) 
-                 && latitude && (-90 <= latitude) && (latitude <= 90)
+        const validLongitude = longitude && (-180 <= longitude) && (longitude <= 180); 
+        const validLatitude = latitude && (-90 <= latitude) && (latitude <= 90);
+
+        return validLongitude && validLatitude;
       },
       message: props => `${props.value} is not a valid point.`
     }

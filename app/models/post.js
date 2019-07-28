@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const Point = require('./point');
+
 const PostSchema = new mongoose.Schema({
   // title
   title: {
@@ -36,8 +38,8 @@ const PostSchema = new mongoose.Schema({
   }],
   // location
   location: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Point'
+    type: Point.PointSchema,
+    required: true
   }
 });
 

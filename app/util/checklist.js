@@ -7,6 +7,9 @@ checklist.print = (status, message, color) => {
     if (status === 'OK') {
       color = 'green';
     }
+    else if (status === 'WARNING') {
+      color = 'yellow';
+    }
     else if (status === 'FAIL') {
       color = 'red';
     }

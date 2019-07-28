@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const csrf = require('csurf');
+const csrfProtection = csrf();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -7,22 +9,28 @@ router.get('/', (req, res, next) => {
 });
 
 /* GET register page. */
-router.get('/register', (req, res, next) => {
-  res.render('index', { title: 'NEMO Surf Shop ‒ Register' });
+router.get('/register', csrfProtection, (req, res, next) => {
+  res.render('index', { 
+    csrfToken: req.csrfToken(),
+    title: 'NEMO Surf Shop ‒ Register' 
+  });
 });
 
 /* POST register. */
-router.post('/register', (req, res, next) => {
+router.post('/register', csrfProtection, (req, res, next) => {
   res.redirect('/');
 });
 
 /* GET login page. */
-router.get('/login', (req, res, next) => {
-  res.render('login', { title: 'NEMO Surf Shop ‒ Login' });
+router.get('/login', csrfProtection, (req, res, next) => {
+  res.render('login', {  
+    csrfToken: req.csrfToken(),
+    title: 'NEMO Surf Shop ‒ Login' 
+  });
 });
 
 /* POST login */
-router.post('/login', (req, res, next) => {
+router.post('/login', csrfProtection, (req, res, next) => {
   res.redirect('/');
 });
 
@@ -39,28 +47,30 @@ router.get('/profile', (req, res, next) => {
 });
 
 /* GET /forgot */
-router.get('/forgot', (req, res, next) => {
-  res.render('forgot', { 
+router.get('/forgot', csrfProtection, (req, res, next) => {
+  res.render('forgot', {  
+    csrfToken: req.csrfToken(),
     title: 'NEMO Surf Shop ‒ Forgot Password' 
   });
 });
 
 /* PUT /forgot */
-router.put('/forgot', (req, res, next) => {
+router.put('/forgot', csrfProtection, (req, res, next) => {
   res.render('forgot_notification', { 
     title: 'NEMO Surf Shop ‒ Forgot Password' 
   });
 });
 
 /* GET /reset/:token */
-router.get('/reset/:token', (req, res, next) => {
-  res.render('reset', { 
+router.get('/reset/:token', csrfProtection, (req, res, next) => {
+  res.render('reset', {  
+    csrfToken: req.csrfToken(),
     title: 'NEMO Surf Shop ‒ Reset Password' 
   });
 });
 
 /* POST /reset/:token */
-router.put('/reset/:token', (req, res, next) => {
+router.put('/reset/:token', csrfProtection, (req, res, next) => {
   res.render('reset_notification', { 
     title: 'NEMO Surf Shop ‒ Reset Password' 
   });
