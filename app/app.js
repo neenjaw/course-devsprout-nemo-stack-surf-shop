@@ -40,6 +40,13 @@ app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/posts/:id/reviews', reviewsRouter);
 
+// catch EBADCSRFTOKEN and forward to error handler
+app.use(function(err, req, res, next) {
+  if (err.code !== 'EBADCSRFTOKEN') return next(err);
+
+  next(createError(403, 'Form has been tampered with.'));
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
