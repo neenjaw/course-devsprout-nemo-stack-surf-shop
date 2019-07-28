@@ -1,6 +1,8 @@
+// Util libs
 const debug = require('debug')('nemo-surf-shop:app');
 const checklist = require('./util/checklist');
 
+// Express Libs
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const express = require('express');
@@ -9,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const logger = require('morgan');
 
+// Routes
 const indexRouter   = require('./routes/index');
 const usersRouter   = require('./routes/users');
 const postsRouter   = require('./routes/posts');
