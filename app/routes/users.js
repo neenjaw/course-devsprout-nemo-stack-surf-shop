@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const csrf = require('csurf');
-const csrfProtection = csrf();
+const csrfProtection = require('../middlewares/crsf-protection');
+
 
 /* ADMIN ROUTE - GET users index - /users */
 router.get('/', csrfProtection, (req, res, next) => {

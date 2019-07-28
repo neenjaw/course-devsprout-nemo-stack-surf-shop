@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router({ mergeParams: true });
-const csrf = require('csurf');
-const csrfProtection = csrf();
+const csrfProtection = require('../middlewares/crsf-protection');
+
 
 /* GET reviews index - /posts/:id/reviews */
 router.get('/', csrfProtection, (req, res, next) => {

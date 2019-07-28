@@ -1,7 +1,10 @@
-var express = require('express');
-var router = express.Router();
-const csrf = require('csurf');
-const csrfProtection = csrf();
+// Lib Includes
+const express = require('express');
+const router = express.Router();
+const csrfProtection = require('../middlewares/crsf-protection');
+
+// Controllers
+const { postRegister } = require('../controllers/index');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -17,7 +20,7 @@ router.get('/register', csrfProtection, (req, res, next) => {
 });
 
 /* POST register. */
-router.post('/register', csrfProtection, (req, res, next) => {
+router.post('/register', csrfProtection, postRegister, (req, res, next) => {
   res.redirect('/');
 });
 

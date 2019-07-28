@@ -10,6 +10,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const logger = require('morgan');
+const passport = require('passport');
 
 // Routes
 const indexRouter   = require('./routes/index');
@@ -17,9 +18,10 @@ const usersRouter   = require('./routes/users');
 const postsRouter   = require('./routes/posts');
 const reviewsRouter = require('./routes/reviews');
 
+// Get the app instance
 const app = express();
 
-// all environments
+// Configure all app environments
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -29,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Configure Sessions
 const _session_secret = process.env.SESSION_SECRET || 'Shh, its a secret!';
 if (!process.env.SESSION_SECRET) debug(checklist.print('WARNING', 'SESSION_SECRET is not set, using default!'));
 app.use(session({ 
@@ -38,6 +41,14 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Configure Passport
+const User = require('./models/user').User;
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// Mount routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
