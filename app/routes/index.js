@@ -2,10 +2,15 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const csrfProtection = require('../middlewares/crsf-protection');
 
 // Controllers
-const { postRegister } = require('../controllers/index');
+const { postRegister } = require('../controllers');
+
+// Middlewares
+const { csrfProtection } = require('../middlewares/crsf-protection');
+const { errorHandler } = require('../middlewares/route-errors');
+
+const handledPostRegister = errorHandler(postRegister);
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -21,9 +26,12 @@ router.get('/register', csrfProtection, (req, res, next) => {
 });
 
 /* POST register. */
-router.post('/register', csrfProtection, postRegister, (req, res, next) => {
-  res.redirect('/');
-});
+router.post(
+  '/register', csrfProtection, handledPostRegister,
+  (req, res, next) => {
+    res.redirect('/');
+  }
+);
 
 /* GET login page. */
 router.get('/login', csrfProtection, (req, res, next) => {
@@ -34,9 +42,10 @@ router.get('/login', csrfProtection, (req, res, next) => {
 });
 
 /* POST login */
-router.post('/login', csrfProtection, passport.authenticate('local'), (req, res, next) => {
-  res.redirect('/');
-});
+router.post('/login', csrfProtection, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 
 /* GET logout page. */
 router.get('/logout', (req, res, next) => {

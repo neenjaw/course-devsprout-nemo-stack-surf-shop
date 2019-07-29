@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const csrfProtection = require('../middlewares/crsf-protection');
 
-const User = require('../models/user').User;
+const { User } = require('../models/user');
+
+// Middlewares
+const { csrfProtection } = require('../middlewares/crsf-protection');
 
 /* ADMIN ROUTE - GET users index - /users */
 router.get('/', csrfProtection, (req, res, next) => {

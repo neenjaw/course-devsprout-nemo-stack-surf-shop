@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const csrfProtection = require('../middlewares/crsf-protection');
 
+const { csrfProtection } = require('../middlewares/crsf-protection');
 
 /* GET posts index - /posts */
 router.get('/', (req, res, next) => {

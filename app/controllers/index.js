@@ -2,7 +2,7 @@
 const debug = require('debug')('nemo-surf-shop:controller');
 const checklist = require('../util/checklist');
 
-const User = require('../models/user').User;
+const { User } = require('../models/user');
 
 module.exports = {
   async postRegister(req, res, next) {
