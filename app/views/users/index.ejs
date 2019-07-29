@@ -1,0 +1,15 @@
+<%- include('../includes/pre-header'); -%>
+<%- include('../includes/header'); -%>
+<%- include('../includes/post-header'); -%>
+
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+
+<% Object.keys(users).forEach(user => { %>
+<ul>
+  <li>Username: <%= users[user].username %></li>
+  <li>Email: <%= users[user].email %></li>
+</ul>
+<% }); %>
+
+<%- include('../includes/footer'); -%>

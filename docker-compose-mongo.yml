@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+
+  mongo.data:
+    container_name: surf-shop-mongo
+    hostname: mongo
+    image: mvertes/alpine-mongo
+    ports:
+      - "27017:27017"

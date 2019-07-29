@@ -3,7 +3,6 @@ const debug = require('debug')('nemo-surf-shop:app');
 const checklist = require('./util/checklist');
 
 // Express Libs
-const mongoose = require('mongoose');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -20,6 +19,26 @@ const reviewsRouter = require('./routes/reviews');
 
 // Get the app instance
 const app = express();
+
+// Mongoose - Configure & Connect
+const mongoose = require('mongoose');
+
+if (!process.env.MONGO_HOST) debug(checklist.print('WARNING', 'MONGO_HOST is not set, using default!'));
+if (!process.env.MONGO_PORT) debug(checklist.print('WARNING', 'MONGO_PORT is not set, using default!'));
+if (!process.env.MONGO_DB) debug(checklist.print('WARNING', 'MONGO_DB is not set, using default!'));
+
+const _mongo_host = process.env.MONGO_HOST || 'localhost';
+const _mongo_port = process.env.MONGO_PORT || '27017';
+const _mongo_db   = process.env.MONGO_DB   || 'nemo_default';
+
+mongoose.connect(
+  `mongodb://${_mongo_host}:${_mongo_port}/${_mongo_db}`,
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
+  .then(() => debug(checklist.print('OK', 'MONGO_DB is connected!')))
+  .catch(err => debug(checklist.print('ERROR', 'MONGO_DB connection error!\n'+ err)));
 
 // Configure all app environments
 app.set('views', path.join(__dirname, 'views'));

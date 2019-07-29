@@ -13,6 +13,9 @@ checklist.print = (status, message, color) => {
     else if (status === 'FAIL') {
       color = 'red';
     }
+    else if (status === 'INFO') {
+      color = 'blue';
+    }
   }
 
   return `[ ${termColor.paint(status, color)} ] ${message}`;
