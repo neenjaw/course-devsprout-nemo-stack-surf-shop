@@ -5,7 +5,7 @@ const checklist = require('../util/checklist');
 const User = require('../models/user').User;
 
 module.exports = {
-  postRegister(req, res, next) {
+  async postRegister(req, res, next) {
     debug(checklist.print('INFO', 'Attempting user registation.'));
 
     const newUser = new User({
@@ -14,15 +14,17 @@ module.exports = {
       image: req.body.image
     });
 
-    User.register(newUser, req.body.password, (err) => {
-      if (err) {
-        debug(checklist.print('ERROR', 'Error registering user.'));
-        return next(err);
-      }
+    await User.register(newUser, req.body.password);
 
-      debug(checklist.print('OK', 'Registered user!'));
+    // (err) => {
+    //   if (err) {
+    //     debug(checklist.print('ERROR', 'Error registering user.'));
+    //     return next(err);
+    //   }
 
-      res.redirect('/');
-    });
+    //   debug(checklist.print('OK', 'Registered user!'));
+
+    //   res.redirect('/');
+    // };
   }
 };

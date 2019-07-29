@@ -1,13 +1,12 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2019
     },
     "extends": "eslint:recommended",
-    "parserOptions": {
-        "sourceType": "module"
+    "env": {
+        "commonjs": true,
+        "node": true
     },
     "rules": {
         "indent": [
