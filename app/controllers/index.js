@@ -14,17 +14,14 @@ module.exports = {
       image: req.body.image
     });
 
-    await User.register(newUser, req.body.password);
+    try {
+      await User.register(newUser, req.body.password);
+    } catch (err) {
+      debug(checklist.print('ERROR', 'Error registering user.'));
+      return next(err);
+    }
 
-    // (err) => {
-    //   if (err) {
-    //     debug(checklist.print('ERROR', 'Error registering user.'));
-    //     return next(err);
-    //   }
-
-    //   debug(checklist.print('OK', 'Registered user!'));
-
-    //   res.redirect('/');
-    // };
+    debug(checklist.print('OK', 'Registered user!'));
+    res.redirect('/');
   }
 };
