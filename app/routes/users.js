@@ -6,7 +6,7 @@ const { User } = require('../models/user');
 // Middlewares
 const { csrfProtection } = require('../middlewares/crsf-protection');
 
-/* ADMIN ROUTE - GET users index - /users */
+// ADMIN ROUTE - GET users index - /users
 router.get('/', csrfProtection, (req, res, next) => {
 
   User.find({}, (err, users) => {
@@ -28,7 +28,7 @@ router.get('/', csrfProtection, (req, res, next) => {
   });
 });
 
-/* ADMIN ROUTE - GET new post form - /users/new */
+// ADMIN ROUTE - GET new post form - /users/new
 router.get('/new', csrfProtection, (req, res, next) => {
   res.render('users/new', {
     csrfToken: req.csrfToken(),
@@ -36,12 +36,12 @@ router.get('/new', csrfProtection, (req, res, next) => {
   });
 });
 
-/* ADMIN ROUTE - POST new post form - /users */
+// ADMIN ROUTE - POST new post form - /users
 router.post('/', csrfProtection, (req, res, next) => {
   res.redirect('/users');
 });
 
-/* GET show post - /users/:user_id */
+// GET show post - /users/:user_id
 router.get('/:user_id', (req, res, next) => {
   res.redirect('/:user_id/profile');
 });
@@ -53,7 +53,7 @@ router.get('/:user_id/profile', csrfProtection, (req, res, next) => {
   });
 });
 
-/* GET edit post form - /users/:user_id/edit */
+// GET edit post form - /users/:user_id/edit
 router.get('/:user_id/edit', csrfProtection, (req, res, next) => {
   res.render('users/edit', {  
     csrfToken: req.csrfToken(),
@@ -61,12 +61,12 @@ router.get('/:user_id/edit', csrfProtection, (req, res, next) => {
   });
 });
 
-/* PUT update post form - /users/:user_id */
+// PUT update post form - /users/:user_id
 router.put('/:user_id', csrfProtection, (req, res, next) => {
   res.redirect('/users');
 });
 
-/* DELETE destroy post form - /users/:user_id */
+// DELETE destroy post form - /users/:user_id
 router.delete('/:user_id', csrfProtection, (req, res, next) => {
   res.redirect('/users');
 });

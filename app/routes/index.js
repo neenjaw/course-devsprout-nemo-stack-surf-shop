@@ -1,10 +1,10 @@
 // Lib Includes
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
 
 // Controllers
-const { postRegister } = require('../controllers');
+const { postRegister } = require('../controllers/register');
+const { getLogin, postLogin, getLogout } = require('../controllers/authentication');
 
 // Middlewares
 const { csrfProtection } = require('../middlewares/crsf-protection');
@@ -12,12 +12,12 @@ const { errorHandler } = require('../middlewares/route-errors');
 
 const handledPostRegister = errorHandler(postRegister);
 
-/* GET home page. */
+// GET home page.
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'NEMO Surf Shop ‒ Home' });
 });
 
-/* GET register page. */
+// GET register page.
 router.get('/register', csrfProtection, (req, res, next) => {
   res.render('register', {
     csrfToken: req.csrfToken(),
@@ -25,7 +25,7 @@ router.get('/register', csrfProtection, (req, res, next) => {
   });
 });
 
-/* POST register. */
+// POST register.
 router.post(
   '/register', csrfProtection, handledPostRegister,
   (req, res, next) => {
@@ -33,34 +33,23 @@ router.post(
   }
 );
 
-/* GET login page. */
-router.get('/login', csrfProtection, (req, res, next) => {
-  res.render('login', {
-    csrfToken: req.csrfToken(),
-    title: 'NEMO Surf Shop ‒ Login'
-  });
-});
+// GET login page.
+router.get('/login', getLogin);
 
-/* POST login */
-router.post('/login', csrfProtection, passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}));
+// POST login
+router.post('/login', postLogin);
 
-/* GET logout page. */
-router.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/');
-});
+// GET logout page.
+router.get('/logout', getLogout);
 
-/* GET /profile */
+// GET /profile
 router.get('/profile', (req, res, next) => {
   // need some middleware here to grab your current user id
   // and inject it into the redirect.
   res.redirect('/users/:user_id/profile');
 });
 
-/* GET /forgot */
+// GET /forgot
 router.get('/forgot', csrfProtection, (req, res, next) => {
   res.render('forgot', {
     csrfToken: req.csrfToken(),
@@ -68,14 +57,14 @@ router.get('/forgot', csrfProtection, (req, res, next) => {
   });
 });
 
-/* PUT /forgot */
+// PUT /forgot
 router.put('/forgot', csrfProtection, (req, res, next) => {
   res.render('forgot_notification', {
     title: 'NEMO Surf Shop ‒ Forgot Password'
   });
 });
 
-/* GET /reset/:token */
+// GET /reset/:token
 router.get('/reset/:token', csrfProtection, (req, res, next) => {
   res.render('reset', {
     csrfToken: req.csrfToken(),
@@ -83,7 +72,7 @@ router.get('/reset/:token', csrfProtection, (req, res, next) => {
   });
 });
 
-/* POST /reset/:token */
+// POST /reset/:token
 router.put('/reset/:token', csrfProtection, (req, res, next) => {
   res.render('reset_notification', {
     title: 'NEMO Surf Shop ‒ Reset Password'
