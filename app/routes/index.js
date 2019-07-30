@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Controllers
 const { postRegister } = require('../controllers/register');
-const { getLogin, postLogin, getLogout } = require('../controllers/authentication');
+const { ensureAuthenticated, getLogin, postLogin, getLogout } = require('../controllers/authentication');
 
 // Middlewares
 const { csrfProtection } = require('../middlewares/crsf-protection');
@@ -43,10 +43,8 @@ router.post('/login', postLogin);
 router.get('/logout', getLogout);
 
 // GET /profile
-router.get('/profile', (req, res, next) => {
-  // need some middleware here to grab your current user id
-  // and inject it into the redirect.
-  res.redirect('/users/:user_id/profile');
+router.get('/profile', ensureAuthenticated, (req, res, next) => {
+  res.redirect(`/users/${req.user}/profile`);
 });
 
 // GET /forgot

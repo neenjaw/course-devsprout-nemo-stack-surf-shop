@@ -47,17 +47,17 @@ router.get('/:user_id', (req, res, next) => {
 });
 
 router.get('/:user_id/profile', csrfProtection, (req, res, next) => {
-  res.render('users/show', {  
+  res.render('users/show', {
     csrfToken: req.csrfToken(),
-    title: 'NEMO Surf Shop ‒ Listing' 
+    title: 'NEMO Surf Shop ‒ Listing'
   });
 });
 
 // GET edit post form - /users/:user_id/edit
 router.get('/:user_id/edit', csrfProtection, (req, res, next) => {
-  res.render('users/edit', {  
+  res.render('users/edit', {
     csrfToken: req.csrfToken(),
-    title: 'NEMO Surf Shop ‒ Edit Listing' 
+    title: 'NEMO Surf Shop ‒ Edit Listing'
   });
 });
 

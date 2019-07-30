@@ -1,9 +1,42 @@
-<%- include('includes/pre-header'); -%>
-<%- include('includes/header'); -%>
-<%- include('includes/post-header'); -%>
+<%- include('../includes/pre-header'); -%>
+<%- include('../includes/header'); -%>
+<%- include('../includes/post-header'); -%>
 
 <h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-posts new view
+<p>Create a new post!</p>
 
-<%- include('includes/footer'); -%>
+<form id="new-post-form" action="/posts" method="POST">
+  <input type="hidden" name="csrfToken" value="<%= csrfToken %>">
+  <div class="post-form">
+    <div class="text form-group field-text-title">
+      <label for="text-title" class="text-label">
+        Title
+      </label>
+      <input type="text" class="form-control" name="text-title" id="text-title" placeholder="Enter a title..">
+    </div>
+    <div class="text form-group field-text-price">
+      <label for="text-price" class="text-label">
+        Price
+      </label>
+      <input type="text" class="form-control" name="text-price" id="text-price" placeholder="How much? (e.g. $9.99)">
+    </div>
+    <div class="textarea form-group field-textarea-description">
+      <label for="textarea-description" class="textarea-label">
+        Description
+      </label>
+      <textarea class="form-control" name="textarea-description" id="textarea-description"
+        placeholder="Your description.."></textarea>
+    </div>
+    <div class="text form-group field-text-image-url">
+      <label for="text-image-url" class="text-label">
+        Image URL
+      </label>
+      <input type="text" class="form-control" name="text-image-url" id="text-image-url" placeholder="Image URL">
+    </div>
+    <div class="text form-group field-submit">
+      <input type="submit" value="Submit">
+    </div>
+  </div>
+</form>
+
+<%- include('../includes/footer'); -%>

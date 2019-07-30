@@ -5,9 +5,9 @@ const { csrfProtection } = require('../middlewares/crsf-protection');
 
 // GET reviews index - /posts/:id/reviews
 router.get('/', csrfProtection, (req, res, next) => {
-  res.render('reviews/index', { 
+  res.render('reviews/index', {
     csrfToken: req.csrfToken(),
-    title: 'NEMO Surf Shop ‒ Listing Reviews' 
+    title: 'NEMO Surf Shop ‒ Listing Reviews'
   });
 });
 
@@ -28,9 +28,9 @@ router.post('/', csrfProtection, (req, res, next) => {
 
 // GET edit post form - /posts/:id/reviews/:review_id/edit
 router.get('/:review_id/edit', csrfProtection, (req, res, next) => {
-  res.render('reviews/edit', { 
+  res.render('reviews/edit', {
     csrfToken: req.csrfToken(),
-    title: 'NEMO Surf Shop ‒ Edit Listing Review' 
+    title: 'NEMO Surf Shop ‒ Edit Listing Review'
   });
 });
 

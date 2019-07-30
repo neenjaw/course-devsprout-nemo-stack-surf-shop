@@ -4,6 +4,11 @@ const { runMiddlewarePipeline } = require('../util/pipeline');
 const { csrfProtection } = require('../middlewares/crsf-protection');
 
 module.exports = {
+  ensureAuthenticated (req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/login');
+  },
+
   getLogin (req, res, next) {
     runMiddlewarePipeline(req, res, next, [
       csrfProtection,

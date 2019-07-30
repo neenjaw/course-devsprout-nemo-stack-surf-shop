@@ -6,6 +6,10 @@ const PointSchema = new mongoose.Schema({
     enum: ['Point'],
     required: true
   },
+  description: {
+    type: String,
+    required: true
+  },
   coordinates: {
     type: [Number],
     required: true,

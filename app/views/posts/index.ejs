@@ -1,9 +1,21 @@
-<%- include('includes/pre-header'); -%>
-<%- include('includes/header'); -%>
-<%- include('includes/post-header'); -%>
+<%- include('../includes/pre-header'); -%>
+<%- include('../includes/header'); -%>
+<%- include('../includes/post-header'); -%>
 
 <h1><%= title %></h1>
 <p>Welcome to <%= title %></p>
-posts index view
 
-<%- include('includes/footer'); -%>
+<% posts.forEach(post => { %>
+<ul>
+  <li>Title: <%= post.title %></li>
+  <li>price: $<%= post.price %></li>
+  <li>description: <%= post.description %></li>
+  <li>author: <%= post.author.username %></li>
+  <li>reviews: <%= post.reviews.length %></li>
+  <li>images: <%= post.images.length %></li>
+  <li>location: <%= post.location.coordinates %></li>
+</ul>
+<% }) %>
+%>
+
+<%- include('../includes/footer'); -%>

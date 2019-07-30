@@ -35,6 +35,9 @@
         ],
         "no-useless-escape": [
             "off"
+        ],
+        "no-trailing-spaces": [
+            "error"
         ]
     }
 }

@@ -4,7 +4,7 @@ const csrf = require('csurf');
 // Disable csrf-protection in development
 module.exports = {
   csrfProtection: (() => {
-    if (process.env.NODE_ENV == 'dev') {
+    if (process.env.NODE_ENV == 'xdev') {
       return (req, res, next) => {
         req.csrfToken = () => '';
         next();
